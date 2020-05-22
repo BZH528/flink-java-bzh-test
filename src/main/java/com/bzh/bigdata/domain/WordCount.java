@@ -6,6 +6,8 @@ import org.apache.flink.api.java.operators.AggregateOperator;
 import org.apache.flink.api.java.operators.DataSource;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.util.Collector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -15,6 +17,8 @@ import org.apache.flink.util.Collector;
  * @version: 1.0
  */
 public class WordCount {
+
+    private static  final Logger LOGGER = LoggerFactory.getLogger(WordCount.class);
 
     public static void main(String[] args) throws Exception {
 
@@ -34,5 +38,6 @@ public class WordCount {
         }).groupBy(0).sum(1);
 
         dataSink.print();
+        LOGGER.info("输出成功");
     }
 }
